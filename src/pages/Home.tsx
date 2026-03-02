@@ -25,7 +25,7 @@ export default function Home() {
       </header>
 <section className="flex items-center justify-center"></section>
       <div
-        className="relative h-[80vh] bg-cover bg-top flex items-center justify-center"
+        className="relative h-[100vh] bg-cover bg-top flex items-center justify-center"
         style={{ backgroundImage: `url(${background})` }}
       >
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
@@ -51,10 +51,10 @@ export default function Home() {
             enfrentar criaturas lendárias e provar seu valor.
           </p>
 
-          <button className="mt-4 px-8 py-3 bg-[#c9a227] text-black font-semibold rounded-lg 
-          hover:scale-105 transition-transform duration-300 shadow-lg mb-10">
+          <a className="mt-4 px-8 py-3 bg-[#c9a227] text-black font-semibold rounded-lg 
+          hover:scale-105 transition-transform duration-300 shadow-lg mb-10" href="https://github.com/Jaca7x/Knight-s-Quest" target="_blank">
             Começar Aventura
-          </button>
+          </a>
 
         </div>
       </section>
