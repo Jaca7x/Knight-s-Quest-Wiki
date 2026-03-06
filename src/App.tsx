@@ -3,9 +3,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import SplashScreen from "@/components/SplashScreen";
 import NavBar from "@/components/NavBar";
+import Footer from "@/components/Footer";
 
 import Home from "@/pages/Home";
-//import Monsters from "@/pages/Monsters";
+import Monsters from "@/pages/Monsters";
 //import Characters from "@/pages/Characters";
 
 export default function App() {
@@ -18,10 +19,13 @@ export default function App() {
   return (
     <BrowserRouter>
       <NavBar />
-
+      
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/monsters" element={<Monsters />} />
       </Routes>
+
+      <Footer />
     </BrowserRouter>
   );
 }
