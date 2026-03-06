@@ -5,3 +5,8 @@
 .font-roboto {
   font-family: 'Roboto', sans-serif;
 }
+
+body {
+  margin: 0;
+  background-color: #0f0c1a; 
+}
