@@ -4,12 +4,13 @@ import { useLocation } from "react-router-dom";
 
 import goblinTilte from "../assets/imgs/monsters/goblins-title.png";
 import goblinSprite from "../assets/imgs/sprites/goblin_sprite.png";
-import goblinArcherSprite from "../assets/imgs/sprites/goblin_sprite.png";
+import goblinArcherSprite from "../assets/imgs/sprites/goblin_archer_sprite.png";
+import goblinTankSprite from "../assets/imgs/sprites/goblin_tank_sprite.png";
 
 import SpriteAnimator from "../components/SpriteAnimator";
 
 export default function Monsters() {
-  const [isHover, setIsHover] = useState(false);
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const { hash } = useLocation();
 
   useEffect(() => {
@@ -25,7 +26,6 @@ export default function Monsters() {
     <div className="min-h-screen bg-gradient-to-b from-[#0f0c1a] via-[#1a1428] to-[#2b1d3a] text-white">
 
       <section id="goblins" className="flex flex-col items-center py-20 gap-6">
-
         <div>
           <img
             src={goblinTilte}
@@ -34,32 +34,67 @@ export default function Monsters() {
           />
         </div>
 
-        <div className="flex gap-10">
+        <div className="flex flex-row flex-wrap justify-center items-stretch gap-10 text-center px-4">
 
           <div
-            className="bg-black/40 p-10 rounded-lg w-52 flex flex-col items-center gap-4 text-center"
-            onMouseEnter={() => setIsHover(true)}
-            onMouseLeave={() => setIsHover(false)}
+            className="bg-black/40 p-6 rounded-lg min-w-[240px] flex flex-col items-center justify-between transition-all duration-300 border border-transparent hover:border-[#c9a227]/30"
+            onMouseEnter={() => setHoveredCard("goblin")}
+            onMouseLeave={() => setHoveredCard(null)}
           >
 
-            <div className="flex justify-center w-full">
+            <div className="flex items-center justify-center h-[200px] w-full">
               <SpriteAnimator
                 sprite={goblinSprite}
-                frameWidth={140}
+                frameWidth={139.7}
                 frameHeight={128}
                 frames={6}
-                fps={isHover ? 10 : 0}
+                fps={hoveredCard === "goblin" ? 10 : 0}
               />
             </div>
-
-            <p className="text-[#c9a227] font-semibold">
+            <p className="text-[#c9a227] font-semibold mt-4 uppercase tracking-widest">
               Goblin
             </p>
+          </div>
 
+          <div
+            className="bg-black/40 p-6 rounded-lg min-w-[240px] flex flex-col items-center justify-between transition-all duration-300 border border-transparent hover:border-[#c9a227]/30"
+            onMouseEnter={() => setHoveredCard("archer")}
+            onMouseLeave={() => setHoveredCard(null)}
+          >
+            <div className="flex items-center justify-center h-[200px] w-full">
+              <SpriteAnimator
+                sprite={goblinArcherSprite}
+                frameWidth={151.5}
+                frameHeight={128}
+                frames={9}
+                fps={hoveredCard === "archer" ? 10 : 0}
+              />
+            </div>
+            <p className="text-[#c9a227] font-semibold mt-4 uppercase tracking-widest">
+              Goblin Arqueiro
+            </p>
+          </div>
+
+          <div
+            className="bg-black/40 p-6 rounded-lg min-w-[320px] flex flex-col items-center justify-between transition-all duration-300 border border-transparent hover:border-[#c9a227]/30"
+            onMouseEnter={() => setHoveredCard("tank")}
+            onMouseLeave={() => setHoveredCard(null)}
+          >
+            <div className="flex items-center justify-center h-[160px] w-full">
+              <SpriteAnimator
+                sprite={goblinTankSprite}
+                frameWidth={300}
+                frameHeight={195}
+                frames={10}
+                fps={hoveredCard === "tank" ? 10 : 0}
+              />
+            </div>
+            <p className="text-[#c9a227] font-semibold mt-4 uppercase tracking-widest">
+              Goblin Tank
+            </p>
           </div>
 
         </div>
-
       </section>
 
       <section id="wolfs">

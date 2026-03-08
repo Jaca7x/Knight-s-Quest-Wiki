@@ -9,7 +9,7 @@ export default function NavBar() {
   const getNavLinks = () => {
     if (isHome) {
       return [
-        { name: "Monstros", path: "/monsters" },
+        { name: "Bestiário", path: "/monsters" },
         { name: "Ferramentas", path: "/tools" },
         { name: "Sobre", path: "/us" },
       ];
