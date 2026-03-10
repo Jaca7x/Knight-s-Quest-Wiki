@@ -3,10 +3,19 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import goblinTilte from "../assets/imgs/monsters/goblins-title.png";
-import goblinSprite from "../assets/imgs/sprites/goblin_sprite.png";
-import goblinArcherSprite from "../assets/imgs/sprites/goblin_archer_sprite.png";
-import goblinTankSprite from "../assets/imgs/sprites/goblin_tank_sprite.png";
-import goblinBombSprite from "../assets/imgs/sprites/goblin_bomb_sprite.png";
+
+import goblinSprite from "../assets/imgs/sprites/goblin/goblin_sprite.png";
+import goblinArcherSprite from "../assets/imgs/sprites/goblin/goblin_archer_sprite.png";
+import goblinTankSprite from "../assets/imgs/sprites/goblin/goblin_tank_sprite.png";
+import goblinBombSprite from "../assets/imgs/sprites/goblin/goblin_bomb_sprite.png";
+
+import wolfTitle from "../assets/imgs/monsters/wolf_title.png";
+
+import wolfSprite from "../assets/imgs/sprites/wolf/wolf_sprite.png";
+import whiteWolfSprite from "../assets/imgs/sprites/wolf/white_wolf_sprite.png";
+import redWolfSprite from "../assets/imgs/sprites/wolf/red_wolf_sprite.png";
+
+import bossTitle from "../assets/imgs/monsters/boss_title.png";
 
 import SpriteAnimator from "../components/SpriteAnimator";
 
@@ -44,6 +53,7 @@ export default function Monsters() {
           >
 
             <div className="flex items-center justify-center h-[200px] w-full">
+              <div className="ml-8">
               <SpriteAnimator
                 sprite={goblinSprite}
                 frameWidth={139.7}
@@ -52,6 +62,7 @@ export default function Monsters() {
                 frames={6}
                 fps={hoveredCard === "goblin" ? 10 : 0}
               />
+              </div>
             </div>
             <p className="text-[#c9a227] font-semibold mt-4 uppercase tracking-widest">
               Goblin
@@ -64,6 +75,7 @@ export default function Monsters() {
             onMouseLeave={() => setHoveredCard(null)}
           >
             <div className="flex items-center justify-center h-[200px] w-full">
+              <div className="ml-5">
               <SpriteAnimator
                 sprite={goblinArcherSprite}
                 frameWidth={151}
@@ -72,6 +84,7 @@ export default function Monsters() {
                 frames={9}
                 fps={hoveredCard === "archer" ? 10 : 0}
               />
+              </div>
             </div>
             <p className="text-[#c9a227] font-semibold mt-4 uppercase tracking-widest">
               Goblin Arqueiro
@@ -84,7 +97,8 @@ export default function Monsters() {
             onMouseLeave={() => setHoveredCard(null)}
           >
             <div className="flex items-center justify-center h-[160px] w-full">
-              <SpriteAnimator
+              <div className="ml-15">
+                <SpriteAnimator
                 sprite={goblinTankSprite}
                 frameWidth={300}
                 frameHeight={195}
@@ -92,6 +106,7 @@ export default function Monsters() {
                 frames={10}
                 fps={hoveredCard === "tank" ? 10 : 0}
               />
+              </div>
             </div>
             <p className="text-[#c9a227] font-semibold mt-4 uppercase tracking-widest">
               Goblin Tank
@@ -121,8 +136,95 @@ export default function Monsters() {
         </div>
       </section>
 
-      <section id="wolfs">
-        <h2>Lobos</h2>
+      <section id="wolfs" className="flex flex-col items-center py-20 gap-6">
+        <div>
+          <img
+            src={wolfTitle}
+            alt="Wolfs Title"
+            className="h-70 object-contain"
+          />
+        </div>  
+
+          <div className="flex flex-row flex-wrap justify-center items-stretch gap-10 text-center px-4">
+
+          <div
+            className="bg-black/40 p-6 rounded-lg min-w-[240px] flex flex-col items-center justify-between transition-all duration-300 border border-transparent hover:border-[#c9a227]/30"
+            onMouseEnter={() => setHoveredCard("wolf")}
+            onMouseLeave={() => setHoveredCard(null)}
+          >
+
+            <div className="flex items-center justify-center h-[200px] w-full">
+              <div className="ml-5">
+              <SpriteAnimator
+                sprite={wolfSprite}
+                frameWidth={180}
+                frameHeight={180}
+                scale={1}
+                frames={6}
+                fps={hoveredCard === "wolf" ? 8 : 0}
+              />
+              </div>
+            </div>
+            <p className="text-[#c9a227] font-semibold mt-4 uppercase tracking-widest">
+                Lobo
+            </p>
+          </div>
+          <div
+            className="bg-black/40 p-6 rounded-lg min-w-[240px] flex flex-col items-center justify-between transition-all duration-300 border border-transparent hover:border-[#c9a227]/30"
+            onMouseEnter={() => setHoveredCard("whiteWolf")}
+            onMouseLeave={() => setHoveredCard(null)}
+          >
+
+            <div className="flex items-center justify-center h-[200px] w-full">
+              <div className="ml-5">
+              <SpriteAnimator
+                sprite={whiteWolfSprite}
+                frameWidth={180}
+                frameHeight={180}
+                scale={1}
+                frames={4}
+                fps={hoveredCard === "whiteWolf" ? 6 : 0}
+              />
+              </div>
+            </div>
+            <p className="text-[#c9a227] font-semibold mt-4 uppercase tracking-widest">
+                Lobo Albino
+            </p>
+          </div>
+
+          <div
+            className="bg-black/40 p-6 rounded-lg min-w-[240px] flex flex-col items-center justify-between transition-all duration-300 border border-transparent hover:border-[#c9a227]/30"
+            onMouseEnter={() => setHoveredCard("redWolf")}
+            onMouseLeave={() => setHoveredCard(null)}
+          >
+
+            <div className="flex items-center justify-center h-[200px] w-full">
+              <div>
+              <SpriteAnimator
+                sprite={redWolfSprite}
+                frameWidth={180}
+                frameHeight={180}
+                scale={1}
+                frames={5}
+                fps={hoveredCard === "redWolf" ? 6 : 0}
+              />
+              </div>
+            </div>
+            <p className="text-[#c9a227] font-semibold mt-4 uppercase tracking-widest">
+                Lobo Rubro
+            </p>
+          </div>
+          </div>
+      </section>
+
+      <section  id="boss" className="flex flex-col items-center py-20 gap-6">
+        <div>
+          <img
+            src={bossTitle}
+            alt="Boss title"
+            className="h-70 object-contain"
+          />
+        </div>
       </section>
 
     </div>
