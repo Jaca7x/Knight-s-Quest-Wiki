@@ -35,7 +35,7 @@ export default function NavBar() {
         bg-[linear-gradient(to_bottom,rgba(15,12,26,0.95),rgba(26,20,40,0.9),rgba(43,29,58,0.85))]
       `}
     >
-      <nav className="relative flex items-center max-w-7xl mx-auto px-10">
+      <nav className="relative flex items-center max-w-7xl mx-auto px-4 sm:px-6 md:px-10">
 
         {!isHome && (
           <Link to="/" className="flex items-center z-10">
@@ -47,7 +47,17 @@ export default function NavBar() {
           </Link>
         )}
 
-        <ol className="absolute left-1/2 -translate-x-1/2 flex gap-8 text-gray-300 tracking-widest text-sm font-medium uppercase">
+        <ol
+  className={`
+    flex
+    ${isHome ? "flex-row" : "flex-wrap"}
+    justify-center
+    gap-4 sm:gap-6 md:gap-8
+    text-xs sm:text-sm
+    text-gray-300 tracking-widest font-medium uppercase
+    absolute left-1/2 -translate-x-1/2
+  `}
+>
           {navLinks.map((link) => (
             <li key={link.path}>
               <Link
