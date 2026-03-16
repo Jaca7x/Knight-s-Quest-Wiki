@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useSplashScreen } from "@/hooks/useSplashScreen";
 import logo from "../assets/imgs/icon/icon.png";
 
 type SplashScreenProps = {
@@ -6,27 +6,8 @@ type SplashScreenProps = {
 };
 
 export default function SplashScreen({ onFinish }: SplashScreenProps) {
-    const [visible, setVisible] = useState(false);
 
-    useEffect(() => {
-        const fadeInTimer = setTimeout(() => {
-            setVisible(true);
-        }, 100);
-
-        const fadeOutTimer = setTimeout(() => {
-            setVisible(false);
-        }, 2000);
-
-        const finishTimer = setTimeout(() => {
-            onFinish();
-        }, 2700);
-
-        return () => {
-            clearTimeout(fadeInTimer);
-            clearTimeout(fadeOutTimer);
-            clearTimeout(finishTimer);
-        };
-    }, [onFinish]);
+    const visible = useSplashScreen({ onFinish })
 
     return (
         <div className="h-screen bg-gradient-to-b from-[#0f0c1a] via-[#1a1428] to-[#2b1d3a] flex flex-col">

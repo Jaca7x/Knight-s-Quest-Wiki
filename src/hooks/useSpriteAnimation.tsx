@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 
-interface SpriteAnimationProps {
+interface UseSpriteAnimationProps {
     frames: number;
     fps: number;
 }
 
-export function useSpriteAnimation({ frames, fps }: SpriteAnimationProps) {
+export function useSpriteAnimation({ frames, fps }: UseSpriteAnimationProps) {
     const [frame, setFrame] = useState(0);
 
     useEffect(() => {
