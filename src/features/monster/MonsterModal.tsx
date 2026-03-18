@@ -1,69 +1,220 @@
 import SpriteAnimator from "@/utils/SpriteAnimator";
+import { motion, AnimatePresence } from "framer-motion";
+import background from "@/assets/imgs/home/background-home.png";
+import { useEffect, useState, useRef } from "react";
+
+const ArrowLeft = () => (
+  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M15 18l-6-6 6-6" />
+  </svg>
+);
+
+const ArrowRight = () => (
+  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M9 18l6-6-6-6" />
+  </svg>
+);
+
+interface MonsterData {
+  sprite: string;
+  name: string;
+  description: string;
+  frameWidth: number;
+  frameHeight: number;
+  frames: number;
+  scale: number;
+  fps?: number;
+  marginLeftModal: number;
+  valueAtk: string;
+  valueLife: string;
+  valueSpe: string;
+}
 
 interface MonsterModalProps {
-    isOpen: boolean;
-    onClose: () => void;
-    sprite: string;
-    title: string;
-    description: string;
-    frameWidth: number;
-    frameHeight: number;
-    frames: number;
-    scale: number;
-    fps?: number;
-    marginLeft: number;
+  isOpen: boolean;
+  onClose: () => void;
+  monsters: MonsterData[];
+  initialIndex: number;
 }
 
 export default function MonsterModal({
-    isOpen,
-    onClose,
-    sprite,
-    title,
-    description,
-    frameWidth,
-    frameHeight,
-    frames,
-    scale,
-    fps,
-    marginLeft
+  isOpen,
+  onClose,
+  monsters,
+  initialIndex,
 }: MonsterModalProps) {
+  const [currentIndex, setCurrentIndex] = useState(initialIndex);
+  const isScrolling = useRef(false);
 
-    if (!isOpen) return null;
+  useEffect(() => {
+    if (isOpen) setCurrentIndex(initialIndex);
+  }, [isOpen, initialIndex]);
 
-    return (
-        <div className="fixed inset-0 flex justify-center items-center bg-black/70 z-50 ">
-            
-            <div className="bg-gradient-to-b from-[#0f0c1a] via-[#1a1428] to-[#2b1d3a] text-white p-5 rounded-lg w-[400px] h-[800px] text-center">
+  const handleNext = () => {
+    if (currentIndex < monsters.length - 1) setCurrentIndex((prev) => prev + 1);
+  };
 
-                <h2 className="text-xl font-bold mb-2">
-                    {title}
-                </h2>
+  const handlePrev = () => {
+    if (currentIndex > 0) setCurrentIndex((prev) => prev - 1);
+  };
 
-                <div style={{ marginLeft:  `${marginLeft}rem`}}>
-                    <SpriteAnimator
-                        sprite={sprite}
-                        frameWidth={frameWidth}
-                        frameHeight={frameHeight}
-                        scale={scale}
-                        frames={frames}
-                        fps={fps}
-                    />
-                </div>
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowRight") handleNext();
+      if (e.key === "ArrowLeft") handlePrev();
+    };
 
+    const handleWheel = (e: WheelEvent) => {
+      if (isScrolling.current) return;
+      if (Math.abs(e.deltaY) > 30 || Math.abs(e.deltaX) > 30) {
+        isScrolling.current = true;
+        if (e.deltaY > 0 || e.deltaX > 0) handleNext();
+        else handlePrev();
+        setTimeout(() => (isScrolling.current = false), 600);
+      }
+    };
 
-                <p className="mb-4">
-                    {description}
-                </p>
+    window.addEventListener("keydown", handleKey);
+    window.addEventListener("wheel", handleWheel);
+    return () => {
+      window.removeEventListener("keydown", handleKey);
+      window.removeEventListener("wheel", handleWheel);
+    };
+  }, [isOpen, currentIndex]);
 
-                <button
-                    onClick={onClose}
-                    className="bg-red-500 text-white px-4 py-2 rounded"
+  const currentMonster = monsters[currentIndex];
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <div className="fixed inset-0 z-[999] flex justify-center items-center overflow-hidden">
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+            className="absolute inset-0 bg-black/90"
+          />
+
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+            className={`
+              relative flex flex-col bg-[#1a1428] text-white 
+              w-full h-full sm:w-[550px] sm:h-auto sm:max-h-[95vh] 
+              sm:rounded-2xl sm:border-2 sm:border-[#c9a227] 
+              shadow-2xl z-[1000] overflow-hidden
+            `}
+          >
+
+            <div className="pt-14 pb-4 text-center">
+              <AnimatePresence mode="wait">
+                <motion.h2
+                  key={currentMonster.name}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  className="text-3xl sm:text-4xl font-black uppercase tracking-widest italic text-[#c9a227]"
                 >
-                    Fechar
-                </button>
-
+                  {currentMonster.name}
+                </motion.h2>
+              </AnimatePresence>
             </div>
 
+            <div
+              className="relative flex-1 sm:h-[350px] min-h-[300px] flex items-center justify-center bg-black/40"
+              style={{ 
+                backgroundImage: `url(${background})`, 
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                perspective: "1200px" 
+              }}
+            >
+              <button
+                onClick={handlePrev}
+                className={`absolute left-4 z-[1100] p-3 text-[#c9a227] hover:scale-125 transition-all active:scale-90 ${currentIndex === 0 ? "opacity-0 pointer-events-none" : "opacity-100 cursor-pointer"}`}
+              >
+                <ArrowLeft />
+              </button>
+
+              <button
+                onClick={handleNext}
+                className={`absolute right-4 z-[1100] p-3 text-[#c9a227] hover:scale-125 transition-all active:scale-90 ${currentIndex === monsters.length - 1 ? "opacity-0 pointer-events-none" : "opacity-100 cursor-pointer"}`}
+              >
+                <ArrowRight />
+              </button>
+
+              <div className="relative w-full h-full flex items-center justify-center pointer-events-none" style={{ transformStyle: 'preserve-3d' }}>
+                {monsters.map((monster, idx) => {
+                  const offset = idx - currentIndex;
+                  if (Math.abs(offset) > 1) return null;
+
+                  return (
+                    <motion.div
+                      key={idx}
+                      animate={{
+                        x: offset * 240,
+                        rotateY: offset * -35,
+                        scale: offset === 0 ? 1 : 0.6,
+                        opacity: offset === 0 ? 1 : 0.3,
+                        z: offset === 0 ? 0 : -150
+                      }}
+                      transition={{ type: "spring", stiffness: 180, damping: 25 }}
+                      className="absolute"
+                    >
+                      <div style={{ marginLeft: `${monster.marginLeftModal}rem` }} className={offset !== 0 ? "blur-sm" : ""}>
+                        <SpriteAnimator {...monster} />
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="p-8 bg-[#130f1d] border-t border-[#c9a227]/20 flex flex-col items-center">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentIndex}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="flex flex-col items-center w-full"
+                >
+                  <p className="text-gray-400 text-center text-sm sm:text-base italic mb-8 min-h-[50px] max-w-md">
+                    "{currentMonster.description}"
+                  </p>
+
+                  <div className="grid grid-cols-3 gap-4 w-full max-w-sm">
+                    <StatBadge label="ATK" value={currentMonster.valueAtk} color="text-red-500" />
+                    <StatBadge label="HP" value={currentMonster.valueLife} color="text-blue-500" />
+                    <StatBadge label="SPD" value={currentMonster.valueSpe} color="text-green-500" />
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            <button
+              onClick={onClose}
+              className="w-full py-6 bg-[#c9a227] text-black font-black uppercase tracking-[0.2em] hover:bg-[#e0b52d] transition-colors mt-auto sm:mt-0"
+            >
+              Voltar ao Jogo
+            </button>
+          </motion.div>
         </div>
-    );
+      )}
+    </AnimatePresence>
+  );
+}
+
+function StatBadge({ label, value, color }: { label: string; value: string; color: string }) {
+  return (
+    <div className="bg-black/60 p-3 rounded-lg border border-[#c9a227]/20 flex flex-col items-center shadow-lg">
+      <span className="text-[10px] text-gray-500 font-bold mb-1 tracking-wider">{label}</span>
+      <span className={`text-xl font-mono font-bold ${color}`}>{value}</span>
+    </div>
+  );
 }
