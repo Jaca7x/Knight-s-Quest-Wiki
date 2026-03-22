@@ -26,7 +26,7 @@ export const ANIM_VARIANTS_MODAL = {
     exit: { scale: 0.9, opacity: 0, y: 20 },
   },
 
-  cardTitleModal: {
+  cardTextsModal: {
     hidden: { opacity: 0, y: -10 },
     visible: { opacity: 1, y: 0 },
     exit: { opacity: 0, y: 10 },
@@ -56,11 +56,5 @@ export const ANIM_VARIANTS_MODAL = {
       opacity: 0,
       scale: 0.4,
     }),
-  },
-
-  descCardModal: {
-    hidden: { opacity: 0, y: 10 },
-    visible: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: -10 },
   },
 };

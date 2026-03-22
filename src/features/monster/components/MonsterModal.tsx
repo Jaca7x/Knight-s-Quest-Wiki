@@ -1,6 +1,6 @@
-import SpriteAnimator from "@/utils/SpriteAnimator";
+import SpriteAnimator from "@/components/ui/SpriteAnimator";
 import { motion, AnimatePresence } from "framer-motion";
-import background from "@/assets/imgs/home/background-home.png";
+import background from "@/assets/imgs/backgrounds/background-main.png";
 import { useEffect, useState, useRef } from "react";
 import type { MonsterData } from "@/data/monster";
 import { ANIM_VARIANTS_MODAL } from "@/utils/animations/modal/modal_animation";
@@ -123,7 +123,7 @@ export default function MonsterModal({
             <div className="pt-14 pb-4 text-center">
               <AnimatePresence mode="wait">
                 <motion.h2
-                  variants={ANIM_VARIANTS_MODAL.cardTitleModal}
+                  variants={ANIM_VARIANTS_MODAL.cardTextsModal}
                   key={currentMonster.name}
                   initial="hidden"
                   animate="visible"
@@ -185,7 +185,7 @@ export default function MonsterModal({
             <div className="p-8 bg-[#130f1d] border-t border-[#c9a227]/20 flex flex-col items-center">
               <AnimatePresence mode="wait">
                 <motion.div
-                  variants={ANIM_VARIANTS_MODAL.descCardModal}
+                  variants={ANIM_VARIANTS_MODAL.cardTextsModal}
                   key={currentIndex}
                   initial="hidden"
                   animate="visible"

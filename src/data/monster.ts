@@ -1,17 +1,17 @@
-import goblinSprite from "@/assets/imgs/sprites/goblin/goblin_sprite.png";
-import goblinArcherSprite from "@/assets/imgs/sprites/goblin/goblin_archer_sprite.png";
-import goblinTankSprite from "@/assets/imgs/sprites/goblin/goblin_tank_sprite.png";
-import goblinBombSprite from "@/assets/imgs/sprites/goblin/goblin_bomb_sprite.png";
+import goblinSprite from "@/features/monster/assets/imgs/sprites/goblin/goblin_sprite.png";
+import goblinArcherSprite from "@/features/monster/assets/imgs/sprites/goblin/goblin_archer_sprite.png";
+import goblinTankSprite from "@/features/monster/assets/imgs/sprites/goblin/goblin_tank_sprite.png";
+import goblinBombSprite from "@/features/monster/assets/imgs/sprites/goblin/goblin_bomb_sprite.png";
 
-import wolfSprite from "@/assets/imgs/sprites/wolf/wolf_sprite.png";
-import whiteWolfSprite from "@/assets/imgs/sprites/wolf/white_wolf_sprite.png";
-import redWolfSprite from "@/assets/imgs/sprites/wolf/red_wolf_sprite.png";
+import wolfSprite from "@/features/monster/assets/imgs/sprites/wolf/wolf_sprite.png";
+import whiteWolfSprite from "@/features/monster/assets/imgs/sprites/wolf/white_wolf_sprite.png";
+import redWolfSprite from "@/features/monster/assets/imgs/sprites/wolf/red_wolf_sprite.png";
 
-import bossSprite from "@/assets/imgs/sprites/boss/boss_attack.png";
+import bossSprite from "@/features/monster/assets/imgs/sprites/boss/boss_attack.png";
 
-import npcSprite from "@/assets/imgs/sprites/npcs/npc_sprite.png";
-import ghostSprite from "@/assets/imgs/sprites/npcs/npc_ghost_sprite.png";
-import peasantSprite from "@/assets/imgs/sprites/npcs/peasant_sprite.png";
+import npcSprite from "@/features/monster/assets/imgs/sprites/npcs/npc_sprite.png";
+import ghostSprite from "@/features/monster/assets/imgs/sprites/npcs/npc_ghost_sprite.png";
+import peasantSprite from "@/features/monster/assets/imgs/sprites/npcs/peasant_sprite.png";
 
 export type MonsterKey =
   | "goblin"
@@ -46,7 +46,8 @@ export interface MonsterData {
 export const monsters: Record<MonsterKey, MonsterData> = {
   goblin: {
     name: "Goblin",
-    description: "Um goblin comum, de estatura baixa e olhar desconfiado. Empunha uma faca gasta pelo tempo e prefere atacar alvos distraídos. Sozinho é fraco, mas raramente anda desacompanhado.",
+    description:
+      "Um goblin comum, de estatura baixa e olhar desconfiado. Empunha uma faca gasta pelo tempo e prefere atacar alvos distraídos. Sozinho é fraco, mas raramente anda desacompanhado.",
     sprite: goblinSprite,
     frameWidth: 139.7,
     frameHeight: 128,
@@ -62,7 +63,8 @@ export const monsters: Record<MonsterKey, MonsterData> = {
   },
   archer: {
     name: "Goblin Archer",
-    description: "Um goblin de olhar atento que prefere manter distância do perigo. Armado com um arco simples e flechas improvisadas, ataca seus alvos de longe com precisão surpreendente.",
+    description:
+      "Um goblin de olhar atento que prefere manter distância do perigo. Armado com um arco simples e flechas improvisadas, ataca seus alvos de longe com precisão surpreendente.",
     sprite: goblinArcherSprite,
     frameWidth: 158,
     frameHeight: 128,
@@ -78,7 +80,8 @@ export const monsters: Record<MonsterKey, MonsterData> = {
   },
   tank: {
     name: "Goblin Tank",
-    description: "Um goblin de porte incomum, mais alto e robusto. Empunha um pesado martelo capaz de esmagar inimigos com facilidade.",
+    description:
+      "Um goblin de porte incomum, mais alto e robusto. Empunha um pesado martelo capaz de esmagar inimigos com facilidade.",
     sprite: goblinTankSprite,
     frameWidth: 220,
     frameHeight: 200,
@@ -94,7 +97,8 @@ export const monsters: Record<MonsterKey, MonsterData> = {
   },
   bomb: {
     name: "Goblin Bomba",
-    description: "Ágil e imprevisível, alterna entre ataques à distância e combate corpo a corpo com bombas rudimentares.",
+    description:
+      "Ágil e imprevisível, alterna entre ataques à distância e combate corpo a corpo com bombas rudimentares.",
     sprite: goblinBombSprite,
     frameWidth: 100,
     frameHeight: 128,
@@ -110,7 +114,8 @@ export const monsters: Record<MonsterKey, MonsterData> = {
   },
   wolf: {
     name: "Lobo",
-    description: "Um lobo feroz que habita regiões selvagens, rápido e agressivo, atacando com investidas precisas.",
+    description:
+      "Um lobo feroz que habita regiões selvagens, rápido e agressivo, atacando com investidas precisas.",
     sprite: wolfSprite,
     frameWidth: 180,
     frameHeight: 180,
@@ -126,7 +131,8 @@ export const monsters: Record<MonsterKey, MonsterData> = {
   },
   whiteWolf: {
     name: "Lobo Albino",
-    description: "Raro e extremamente veloz, observa seus inimigos antes de atacar no momento exato.",
+    description:
+      "Raro e extremamente veloz, observa seus inimigos antes de atacar no momento exato.",
     sprite: whiteWolfSprite,
     frameWidth: 180,
     frameHeight: 180,
@@ -142,7 +148,8 @@ export const monsters: Record<MonsterKey, MonsterData> = {
   },
   redWolf: {
     name: "Lobo Rubro",
-    description: "Um lobo sanguinário e brutal. Não caça por necessidade, mas por puro instinto de destruição.",
+    description:
+      "Um lobo sanguinário e brutal. Não caça por necessidade, mas por puro instinto de destruição.",
     sprite: redWolfSprite,
     frameWidth: 180,
     frameHeight: 180,
@@ -158,7 +165,8 @@ export const monsters: Record<MonsterKey, MonsterData> = {
   },
   boss: {
     name: "Brakkor, O Dourado",
-    description: "Um colossal rei goblin que carrega o ouro de reinos destruídos. Sua força é devastadora.",
+    description:
+      "Um colossal rei goblin que carrega o ouro de reinos destruídos. Sua força é devastadora.",
     sprite: bossSprite,
     frameWidth: 140,
     frameHeight: 128,
@@ -174,7 +182,8 @@ export const monsters: Record<MonsterKey, MonsterData> = {
   },
   knight: {
     name: "Cavaleiro Jovem",
-    description: "Um guerreiro em início de jornada, determinado a provar seu valor.",
+    description:
+      "Um guerreiro em início de jornada, determinado a provar seu valor.",
     sprite: npcSprite,
     frameWidth: 120,
     frameHeight: 150,
@@ -190,7 +199,8 @@ export const monsters: Record<MonsterKey, MonsterData> = {
   },
   ghost: {
     name: "Cavaleiro Fantasma",
-    description: "Uma presença etérea que surge para oferecer dicas aos viajantes.",
+    description:
+      "Uma presença etérea que surge para oferecer dicas aos viajantes.",
     sprite: ghostSprite,
     frameWidth: 120,
     frameHeight: 150,

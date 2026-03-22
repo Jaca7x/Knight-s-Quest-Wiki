@@ -3,13 +3,13 @@ import { useLocation } from "react-router-dom";
 import { monsters } from "@/data/monster";
 import type { MonsterKey } from "@/data/monster"
 
-import goblinTitle from "@/assets/imgs/monsters/goblins-title.png";
-import wolfTitle from "@/assets/imgs/monsters/wolf_title.png";
-import bossTitle from "@/assets/imgs/monsters/goblins-title.png";
-import npcsTitle from "@/assets/imgs/monsters/goblins-title.png";
+import goblinTitle from "@/features/monster/assets/imgs/section_header/goblins-title.png";
+import wolfTitle from "@/features/monster/assets/imgs/section_header/wolf_title.png";
+import bossTitle from "@/features/monster/assets/imgs/section_header/goblins-title.png";
+import npcsTitle from "@/features/monster/assets/imgs/section_header/goblins-title.png";
 
-import MonsterModal from "@/features/monster/MonsterModal";
-import MonsterCard from "@/features/monster/MonsterCard";
+import MonsterModal from "@/features/monster/components/MonsterModal";
+import MonsterCard from "@/features/monster/components/MonsterCard";
 
 export default function Monsters() {
   const [hoveredCard, setHoveredCard] = useState<MonsterKey | null>(null);
@@ -45,7 +45,7 @@ export default function Monsters() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#0f0c1a] via-[#1a1428] to-[#2b1d3a] text-white px-2 sm:px-4 pb-20">
-      
+
       <section id="goblins" className="scroll-mt-24 flex flex-col items-center py-10 gap-6">
         <img src={goblinTitle} className="h-16 md:h-24 object-contain" alt="Goblins" />
         <div className="flex flex-wrap justify-center gap-6 md:gap-10">

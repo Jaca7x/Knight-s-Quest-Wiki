@@ -1,4 +1,4 @@
-import SpriteAnimator from "@/utils/SpriteAnimator"
+import SpriteAnimator from "@/components/ui/SpriteAnimator"
 
 interface MonsterCardProps {
     name: string
@@ -39,7 +39,7 @@ export default function MonsterCard({
             onClick={onClick}
         >
             <div className="flex items-center justify-center h-[200px] w-full">
-                <div style={{ marginLeft: `${marginLeft}px`, marginBottom: `${marginBottom}px`}}>
+                <div style={{ marginLeft: `${marginLeft}px`, marginBottom: `${marginBottom}px` }}>
                     <SpriteAnimator
                         sprite={sprite}
                         frameWidth={frameWidth}

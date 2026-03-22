@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { BrowserRouter, Routes, Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import SplashScreen from "@/utils/SplashScreen";
+import SplashScreen from "@/components/ui/SplashScreen";
 import NavBar from "@/components/ui/NavBar";
 import Footer from "@/components/ui/Footer";
 
@@ -9,7 +9,7 @@ import Home from "@/pages/Home";
 import Monsters from "@/pages/Monsters";
 
 function AppContent() {
-  
+
   return (
     <>
       <NavBar />

@@ -1,5 +1,5 @@
 import { useSplashScreen } from "@/hooks/useSplashScreen";
-import logo from "../assets/imgs/icon/icon.png";
+import logo from "@/assets/imgs/icon/icon.png";
 
 type SplashScreenProps = {
     onFinish: () => void;
