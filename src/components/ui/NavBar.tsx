@@ -67,7 +67,7 @@ export default function NavBar() {
         ${visible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}
       `}
     >
-      <nav className="relative flex items-center max-w-7xl mx-auto px-4 sm:px-6 md:px-10 w-full">
+      <nav className="relative flex items-center justify-between max-w-7xl mx-auto px-4 sm:px-6 md:px-10 w-full">
 
         {!isHome && (
           <Link to="/" className="flex items-center z-10">
@@ -78,12 +78,12 @@ export default function NavBar() {
         <ol
           className={`
             flex
-        ${isHome ? "flex-row flex-nowrap" : "flex-row flex-wrap hidden sm:flex"}
+        ${isHome ? "flex flex-row justify-center items-center" : "hidden sm:flex"}
         justify-center
         gap-4 sm:gap-6 md:gap-8
         text-xs sm:text-sm
         text-gray-300 tracking-widest font-medium uppercase
-        absolute left-1/2 -translate-x-1/2
+        w-full
         `}>
 
           {navLinks.map((link, index) => (
