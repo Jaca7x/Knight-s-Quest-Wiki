@@ -43,12 +43,14 @@ export default function Monsters() {
     setSelectMonsterIndex(index);
   };
 
+  const containerStyle = "flex overflow-x-auto snap-x snap-mandatory gap-6 md:gap-10 w-full px-6 pb-4 md:flex-wrap md:justify-center md:overflow-visible md:px-0";
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#0f0c1a] via-[#1a1428] to-[#2b1d3a] text-white px-2 sm:px-4 pb-20">
 
       <section id="goblins" className="scroll-mt-24 flex flex-col items-center py-10 gap-6">
         <img src={goblinTitle} className="h-16 md:h-24 object-contain" alt="Goblins" />
-        <div className="flex flex-wrap justify-center gap-6 md:gap-10">
+        <div className={containerStyle}>
           {monsterGroups.goblins.map((key) => (
             <MonsterCard
               key={key}
@@ -66,7 +68,7 @@ export default function Monsters() {
 
       <section id="wolfs" className="scroll-mt-24 flex flex-col items-center py-10 gap-6">
         <img src={wolfTitle} className="h-16 md:h-24 object-contain" alt="Wolfs" />
-        <div className="flex flex-wrap justify-center gap-6 md:gap-10">
+        <div className={containerStyle}>
           {monsterGroups.wolfs.map((key) => (
             <MonsterCard
               key={key}
@@ -84,7 +86,7 @@ export default function Monsters() {
 
       <section id="boss" className="scroll-mt-24 flex flex-col items-center py-10 gap-6">
         <img src={bossTitle} className="h-16 md:h-24 object-contain" alt="Boss" />
-        <div className="flex justify-center">
+        <div className={containerStyle}>
           {monsterGroups.boss.map((key) => (
             <MonsterCard
               key={key}
@@ -101,8 +103,8 @@ export default function Monsters() {
       </section>
 
       <section id="npcs" className="scroll-mt-24 flex flex-col items-center py-10 gap-6">
-        <img src={npcsTitle} className="h-16 md:h-24 object-contain" alt="NPCs" />
-        <div className="flex flex-wrap justify-center gap-6 md:gap-10">
+        <img src={npcsTitle} className="h-6 md:h-24 object-contain" alt="NPCs" />
+        <div className={containerStyle}>
           {monsterGroups.npcs.map((key) => (
             <MonsterCard
               key={key}

@@ -13,7 +13,7 @@ interface MonsterCardProps {
     onLeave: () => void
     onClick: () => void
     marginLeft?: number
-    marginBottom: number
+    marginBottom?: number
 }
 
 export default function MonsterCard({
@@ -29,11 +29,14 @@ export default function MonsterCard({
     onLeave,
     onClick,
     marginLeft = 0,
-    marginBottom
+    marginBottom = 0
 }: MonsterCardProps) {
     return (
         <div
-            className="bg-black/40 p-6 rounded-lg min-w-[240px] flex flex-col items-center justify-between transition-all duration-300 border border-transparent hover:border-[#c9a227]/30 cursor-pointer"
+            className="flex flex-col items-center justify-between bg-black/40 p-6 rounded-lg 
+                       w-80 min-h-[320px] flex-shrink-0 snap-center
+                       transition-all duration-300 border border-transparent 
+                       hover:border-[#c9a227]/30 cursor-pointer"
             onMouseEnter={onHover}
             onMouseLeave={onLeave}
             onClick={onClick}
@@ -50,7 +53,7 @@ export default function MonsterCard({
                     />
                 </div>
             </div>
-            <p className="text-[#c9a227] font-semibold uppercase tracking-widest">
+            <p className="text-[#c9a227] font-semibold uppercase tracking-widest text-center mt-4">
                 {name}
             </p>
         </div>
