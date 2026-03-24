@@ -1,4 +1,4 @@
-import logo from "@/assets/imgs/icon/icon.png";
+import logo from "@/assets/imgs/icon/icon_game.png";
 import background from "@/assets/imgs/backgrounds/background-main.png";
 import initialTitle from "@/features/home/assets/imgs/initial-title.png";
 

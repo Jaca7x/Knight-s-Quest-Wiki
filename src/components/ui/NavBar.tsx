@@ -1,5 +1,5 @@
 import { useLocation, Link } from "react-router-dom";
-import logo from "@/assets/imgs/icon/icon_navbar.png";
+import logo from "@/assets/imgs/icon/icon_helmet.png";
 import { useState, useEffect } from "react";
 import HamburgerMenu from "./HamburgerMenu";
 import { Sparkles } from "lucide-react";
