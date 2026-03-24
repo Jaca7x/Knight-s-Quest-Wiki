@@ -16,11 +16,11 @@ export default function HamburgerMenu({ links }: Props) {
 
     useEffect(() => {
         if (isOpen) {
-            document.body.style.overflow = 'hidden';
+            document.documentElement.style.overflow = 'hidden';
         } else {
-            document.body.style.overflow = 'unset';
+            document.documentElement.style.overflow = 'unset';
         }
-        return () => { document.body.style.overflow = 'unset'; };
+        return () => { document.documentElement.style.overflow = 'unset'; };
     }, [isOpen]);
 
     return (
@@ -28,7 +28,7 @@ export default function HamburgerMenu({ links }: Props) {
             {createPortal(
                 <>
                     <button
-                        className="fixed top-8 right-8 z-[100] p-2 flex flex-col gap-1.5 items-end group"
+                        className="fixed top-8 right-8 z-[100] p-2 flex flex-col gap-1.5 items-end group md:hidden"
                         onClick={() => setIsOpen(!isOpen)}
                         aria-label="Alternar Menu"
                     >
@@ -39,7 +39,7 @@ export default function HamburgerMenu({ links }: Props) {
 
                     <div className={`
                         fixed inset-0 w-full h-screen bg-[#0f0c1a]/95 backdrop-blur-xl z-[90]
-                        flex flex-col items-center justify-center transition-all duration-500
+                        flex flex-col items-center justify-center transition-all duration-500 md:hidden
                         ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}
                     `}>
 
@@ -65,7 +65,6 @@ export default function HamburgerMenu({ links }: Props) {
                                     >
                                         <span className="relative inline-block">
                                             {link.name}
-
                                             <span className="absolute inline-block -bottom-2 left-0 w-0 h-[2px] bg-[#c9a227] transition-all duration-300 group-hover:w-full shadow-[0_0_10px_#c9a227]"></span>
                                         </span>
                                     </Link>
