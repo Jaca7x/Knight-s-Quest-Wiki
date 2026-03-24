@@ -3,10 +3,10 @@ import { useLocation } from "react-router-dom";
 import { monsters } from "@/data/monster";
 import type { MonsterKey } from "@/data/monster"
 
-import goblinTitle from "@/features/monster/assets/imgs/section_header/goblins-title.png";
+import goblinTitle from "@/features/monster/assets/imgs/section_header/goblin_title.png";
 import wolfTitle from "@/features/monster/assets/imgs/section_header/wolf_title.png";
-import bossTitle from "@/features/monster/assets/imgs/section_header/goblins-title.png";
-import npcsTitle from "@/features/monster/assets/imgs/section_header/goblins-title.png";
+import bossTitle from "@/features/monster/assets/imgs/section_header/boss_title.png";
+import npcsTitle from "@/features/monster/assets/imgs/section_header/npcs_title.png";
 
 import MonsterModal from "@/features/monster/components/MonsterModal";
 import MonsterCard from "@/features/monster/components/MonsterCard";
@@ -46,7 +46,7 @@ export default function Monsters() {
   const containerStyle = "flex overflow-x-auto snap-x snap-mandatory gap-6 md:gap-10 w-full px-6 pb-4 md:flex-wrap md:justify-center md:overflow-visible md:px-0";
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0f0c1a] via-[#1a1428] to-[#2b1d3a] text-white px-2 sm:px-4 pb-20">
+    <div className="min-h-screen bg-gradient-to-b from-[#0f0c1a] via-[#1a1428] to-[#2b1d3a] text-white px-2 sm:px-4 pb-20 py-20">
 
       <section id="goblins" className="scroll-mt-24 flex flex-col items-center py-10 gap-6">
         <img src={goblinTitle} className="h-16 md:h-24 object-contain" alt="Goblins" />
@@ -103,7 +103,7 @@ export default function Monsters() {
       </section>
 
       <section id="npcs" className="scroll-mt-24 flex flex-col items-center py-10 gap-6">
-        <img src={npcsTitle} className="h-6 md:h-24 object-contain" alt="NPCs" />
+        <img src={npcsTitle} className="h-16 md:h-24 object-contain" alt="NPCs" />
         <div className={containerStyle}>
           {monsterGroups.npcs.map((key) => (
             <MonsterCard
