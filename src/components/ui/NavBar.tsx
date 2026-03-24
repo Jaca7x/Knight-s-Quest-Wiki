@@ -1,40 +1,14 @@
 import { useLocation, Link } from "react-router-dom";
-import logo from "@/assets/imgs/icon/icon.png";
+import logo from "@/assets/imgs/icon/icon_navbar.png";
 import { useState, useEffect } from "react";
 import HamburgerMenu from "./HamburgerMenu";
+import { Sparkles } from "lucide-react";
 
 export default function NavBar() {
   const { pathname } = useLocation();
-  const [visible, setVisible] = useState(false);
-  const [olVisible, setOlVisible] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   const isHome = pathname === "/";
-
-  useEffect(() => {
-
-    if (!isHome) {
-      setVisible(true);
-      setOlVisible(true);
-      return;
-    }
-
-    const handleScroll = () => {
-      setVisible(true);
-
-      setTimeout(() => {
-        setOlVisible(true);
-      }, 150);
-
-      window.removeEventListener("scroll", handleScroll);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-
-  }, [isHome]);
 
   const getNavLinks = () => {
     if (isHome) {
@@ -57,65 +31,81 @@ export default function NavBar() {
 
   const navLinks = getNavLinks();
 
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header
-      className={`
-        sticky top-0 w-full z-50 transition-all duration-300
-        ${isHome ? "py-10" : "py-6"} 
-        bg-[linear-gradient(to_bottom,rgba(15,12,26,0.95),rgba(26,20,40,0.9),rgba(43,29,58,0.85))]
-        transition-all duration-500
-        ${visible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}
-      `}
-    >
-      <nav className="relative flex items-center justify-between max-w-7xl mx-auto px-4 sm:px-6 md:px-10 w-full">
+    <header className="fixed top-0 left-0 right-0 z-[100] pointer-events-none">
 
-        {!isHome && (
-          <Link to="/" className="flex items-center z-10">
-            <img src={logo} alt="Logo" className="h-16 w-auto hover:scale-105 transition-transform" />
-          </Link>
-        )}
 
-        <ol
-          className={`
-            flex
-        ${isHome ? "flex flex-row justify-center items-center" : "hidden sm:flex"}
-        justify-center
-        gap-4 sm:gap-6 md:gap-8
-        text-xs sm:text-sm
-        text-gray-300 tracking-widest font-medium uppercase
-        w-full
-        `}>
+      <div className={`
+        hidden md:flex justify-center transition-all duration-500 pointer-events-auto
+        ${scrolled ? "mt-4" : "mt-8"}
+      `}>
+        <nav className="relative group">
 
-          {navLinks.map((link, index) => (
-            <li
-              key={link.path}
-              style={{ transitionDelay: `${index * 100}ms` }}
-              className={`
-              transition-all duration-500
-              ${olVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}
-              `}>
-              <Link
-                to={link.path}
-                className="relative group hover:text-white transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(201,162,39,0.5)]"
-              >
-                {link.name}
+          <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-full blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
 
-                <span className="absolute -bottom-1 left-0 h-[1.5px] bg-[#c9a227] 
-                         w-0 transition-all duration-300 
-                         group-hover:w-full 
-                         shadow-[0_0_10px_#c9a227]">
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ol>
+          <div className="relative flex items-center bg-[#0a0a0f]/90 backdrop-blur-xl border border-white/10 rounded-full px-2 py-1.5 shadow-2xl">
 
-        {!isHome && (
-          <div className="sm:hidden ml-auto z-50">
-            < HamburgerMenu links={navLinks} />
+
+            <Link
+              to="/"
+              className="flex items-center justify-center ml-2 mr-6 transition-all group/logo"
+            >
+              <img
+                src={logo}
+                alt="Logo"
+                className="h-14 w-auto object-contain group-hover/logo:scale-110 transition-transform duration-300 drop-shadow-[0_0_8px_rgba(59,130,246,0.3)]"
+              />
+            </Link>
+
+            <div className="w-[1px] h-4 bg-white/10 mr-2"></div>
+
+            <ul className="flex items-center gap-1">
+              {navLinks.map((link) => {
+
+                const isActive = pathname === link.path || window.location.hash === link.path.split('#')[1];
+
+                return (
+                  <li key={link.path} className="relative">
+                    <Link
+                      to={link.path}
+                      className={`
+                        relative z-10 flex items-center gap-2 px-5 py-2 rounded-full text-[12px] font-bold tracking-widest uppercase transition-all duration-300
+                        ${isActive ? "text-blue-400" : "text-gray-400 hover:text-white"}
+                      `}
+                    >
+                      {isActive && <Sparkles size={12} className="animate-pulse" />}
+                      {link.name}
+                    </Link>
+
+                    {isActive && (
+                      <div className="absolute inset-0 bg-blue-500/10 border border-blue-500/20 rounded-full z-0"></div>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
           </div>
-        )}
-      </nav>
-    </header >
+        </nav>
+      </div>
+
+      <div className={`
+        md:hidden flex items-center justify-between px-6 transition-all duration-500 pointer-events-auto
+        ${scrolled ? "py-3 bg-[#0a0a0f]/95 border-b border-white/5 backdrop-blur-md" : "py-5 bg-transparent"}
+      `}>
+        <Link to="/" className="group">
+          <img src={logo} alt="Logo" className="h-20 w-auto group-active:scale-90 transition-transform" />
+        </Link>
+
+        <div className="flex items-center gap-3">
+          <HamburgerMenu links={navLinks} />
+        </div>
+      </div>
+    </header>
   );
 }
