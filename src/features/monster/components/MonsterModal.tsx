@@ -120,7 +120,7 @@ export default function MonsterModal({
             `}
           >
 
-            <div className="pt-14 pb-4 text-center">
+            <div className="pt-4 pb-4 text-center">
               <AnimatePresence mode="wait">
                 <motion.h2
                   variants={ANIM_VARIANTS_MODAL.cardTextsModal}
@@ -136,7 +136,7 @@ export default function MonsterModal({
             </div>
 
             <div
-              className="relative flex-1 sm:h-[350px] min-h-[300px] flex items-center justify-center bg-black/40"
+              className="relative  sm:h-[350px] min-h-[300px] flex items-center justify-center bg-black/40"
               style={{
                 backgroundImage: `url(${background})`,
                 backgroundSize: 'cover',
@@ -207,7 +207,7 @@ export default function MonsterModal({
 
             <button
               onClick={onClose}
-              className="w-full py-6 bg-[#c9a227] text-black font-black uppercase tracking-[0.2em] hover:bg-[#e0b52d] transition-colors mt-auto sm:mt-0"
+              className="w-full py-6 bg-[#c9a227] text-black font-black uppercase tracking-[0.2em] hover:bg-[#e0b52d] transition-colors mt-auto sm:mt-0 fixed sm:static bottom-0"
             >
               Voltar ao Jogo
             </button>
