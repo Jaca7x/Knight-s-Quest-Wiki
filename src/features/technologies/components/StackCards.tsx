@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { technologies } from "@/data/technologies";
+import { technologies } from "@/data/technologiesData";
 import { ANIM_VARIANTS_TECHNOLOGIES_CARD } from "@/utils/animations/technolgies_card/card";
 
 export default function StackCards() {
