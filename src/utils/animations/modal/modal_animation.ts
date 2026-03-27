@@ -33,13 +33,13 @@ export const ANIM_VARIANTS_MODAL = {
   },
 
   offsetCardModal: {
-    hidden: (offset: number) => ({
+    hidden: ({ offset }: AnimVariantsModalProps) => ({
       x: offset * 240,
       rotateY: offset * -35,
       scale: 0.4,
       opacity: 0,
     }),
-    visible: (offset: number) => ({
+    visible: ({ offset }: AnimVariantsModalProps) => ({
       x: offset * 240,
       rotateY: offset * -35,
       scale: offset === 0 ? 1 : 0.6,
@@ -51,7 +51,7 @@ export const ANIM_VARIANTS_MODAL = {
         damping: 25,
       },
     }),
-    exit: (offset: number) => ({
+    exit: ({ offset }: AnimVariantsModalProps) => ({
       x: offset * 240,
       opacity: 0,
       scale: 0.4,
