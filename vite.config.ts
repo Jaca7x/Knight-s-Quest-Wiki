@@ -4,7 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 
 export default defineConfig({
-  base: "/Knight-s-Quest-Wiki/",
+  base: process.env.VERCEL ? "/" : "/Knight-s-Quest-Wiki/",
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
