@@ -96,10 +96,6 @@ export default function ArchitectureExplorer() {
                                     transition={{ duration: 0.2 }}
                                     className="w-full max-w-4xl mx-auto"
                                 >
-                                    <span className="text-[#565f89] block mb-4 italic select-none">
-                                        {"// Location: ~/knights-quest/" + activeFolder.name}
-                                    </span>
-
                                     <h2 className="text-[#A78BFA] text-lg md:text-xl leading-relaxed italic mb-12">
                                         {activeFolder.desc.split("'").map((part, i) =>
                                             i % 2 === 1 ? (
