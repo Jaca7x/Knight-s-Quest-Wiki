@@ -1,5 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
-import { useLocation } from "react-router-dom";
+import { useState, useMemo } from "react";
 import { monsters } from "@/data/monster";
 import type { MonsterKey } from "@/data/monster"
 
@@ -15,8 +14,6 @@ export default function Monsters() {
   const [hoveredCard, setHoveredCard] = useState<MonsterKey | null>(null);
   const [selectMonsterIndex, setSelectMonsterIndex] = useState<number | null>(null);
 
-  const { hash } = useLocation();
-
   const monsterGroups: Record<string, MonsterKey[]> = {
     goblins: ["goblin", "archer", "tank", "bomb"],
     wolfs: ["wolf", "whiteWolf", "redWolf"],
@@ -30,13 +27,6 @@ export default function Monsters() {
       ...monsters[key as MonsterKey],
     }));
   }, []);
-
-  useEffect(() => {
-    if (hash) {
-      const el = document.querySelector(hash);
-      if (el) el.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [hash]);
 
   const openModalAt = (key: MonsterKey) => {
     const index = allMonstersList.findIndex((m) => m.key === key);
