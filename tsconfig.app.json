@@ -18,10 +18,11 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    
+
+    "ignoreDeprecations": "6.0",
     "baseUrl": "src",
     "paths": {
-      "@/*": ["*"] 
+      "@/*": ["*"]
     }
   },
   "include": ["src"]
