@@ -9,6 +9,7 @@ import npcsTitle from "@/features/monster/assets/imgs/section_header/npcs_title.
 
 import MonsterModal from "@/features/monster/components/MonsterModal";
 import MonsterCard from "@/features/monster/components/MonsterCard";
+import { AnimatePresence } from "framer-motion";
 
 export default function Monsters() {
   const [hoveredCard, setHoveredCard] = useState<MonsterKey | null>(null);
@@ -36,7 +37,7 @@ export default function Monsters() {
   const containerStyle = "flex overflow-x-auto snap-x snap-mandatory gap-6 md:gap-10 w-full px-6 pb-4 md:flex-wrap md:justify-center md:overflow-visible md:px-0";
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0f0c1a] via-[#1a1428] to-[#2b1d3a] text-white px-2 sm:px-4 pb-20 py-20">
+    <div className="min-h-screen bg-linear-to-b from-[#0f0c1a] via-[#1a1428] to-[#2b1d3a] text-white px-2 sm:px-4 pb-20 py-20">
 
       <section id="goblins" className="scroll-mt-24 flex flex-col items-center py-10 gap-6">
         <img src={goblinTitle} className="h-16 md:h-24 object-contain" alt="Goblins" />
@@ -110,12 +111,17 @@ export default function Monsters() {
         </div>
       </section>
 
-      <MonsterModal
-        isOpen={selectMonsterIndex !== null}
-        onClose={() => setSelectMonsterIndex(null)}
-        monsters={allMonstersList}
-        initialIndex={selectMonsterIndex ?? 0}
-      />
+      <AnimatePresence mode="wait">
+        {selectMonsterIndex !== null && (
+          <MonsterModal
+            key={selectMonsterIndex}
+            isOpen={true}
+            onClose={() => setSelectMonsterIndex(null)}
+            monsters={allMonstersList}
+            initialIndex={selectMonsterIndex}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }

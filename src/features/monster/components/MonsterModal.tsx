@@ -1,7 +1,7 @@
 import SpriteAnimator from "@/components/ui/SpriteAnimator";
 import { motion, AnimatePresence } from "framer-motion";
 import background from "@/assets/imgs/backgrounds/background-main.png";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import type { MonsterData } from "@/data/monster";
 import { ANIM_VARIANTS_MODAL } from "@/utils/animations/modal/modal_animation";
 import type { AnimVariantsModalProps } from "@/utils/animations/modal/modal_animation"
@@ -35,21 +35,23 @@ export default function MonsterModal({
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const isScrolling = useRef(false);
 
-  useEffect(() => {
-    if (isOpen) setCurrentIndex(initialIndex);
-  }, [isOpen, initialIndex]);
+  const handleNext = useCallback(() => {
+    setCurrentIndex((prev) => {
+      if (prev < monsters.length - 1) return prev + 1;
+      return prev;
+    })
+  }, [monsters.length]);
 
-  const handleNext = () => {
-    if (currentIndex < monsters.length - 1) setCurrentIndex((prev) => prev + 1);
-  };
+  const handlePrev = useCallback(() => {
+    setCurrentIndex((prev) => {
+      if (prev > 0) return prev - 1;
+      return prev;
+    });
+  }, []);
 
-  const handlePrev = () => {
-    if (currentIndex > 0) setCurrentIndex((prev) => prev - 1);
-  };
-
-  const handleBack = () => {
+  const handleBack = useCallback(() => {
     onClose();
-  }
+  }, [onClose]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -91,7 +93,7 @@ export default function MonsterModal({
       window.removeEventListener("wheel", handleWheel);
       window.removeEventListener("popstate", handlePopState)
     };
-  }, [isOpen, currentIndex]);
+  }, [isOpen, handleNext, handlePrev, handleBack, onClose]);
 
   const currentMonster = monsters[currentIndex];
 
@@ -104,7 +106,7 @@ export default function MonsterModal({
           <>
             {
               isOpen && (
-                <div className={`fixed inset-0 z-[999] flex justify-center items-center overflow-hidden pointer-events-none`}>
+                <div className={`fixed inset-0 z-999 flex justify-center items-center overflow-hidden pointer-events-none`}>
 
                   <motion.div
                     variants={ANIM_VARIANTS_MODAL.modalOverlay}
@@ -122,9 +124,9 @@ export default function MonsterModal({
                     exit="exit"
                     className={`
               relative flex flex-col bg-[#1a1428] text-white
-      w-full h-full sm:w-[550px] sm:h-auto sm:max-h-[95vh]
+      w-full h-full sm:w-137.5 sm:h-auto sm:max-h-[95vh]
       sm:rounded-2xl sm:border-2 sm:border-[#c9a227]
-      shadow-2xl z-[1000] overflow-hidden pointer-events-auto
+      shadow-2xl z-1000 overflow-hidden pointer-events-auto
             `}
                   >
 
@@ -144,7 +146,7 @@ export default function MonsterModal({
                     </div>
 
                     <div
-                      className="relative  sm:h-[350px] min-h-[300px] flex items-center justify-center bg-black/40"
+                      className="relative  sm:h-87.5 min-h-75 flex items-center justify-center bg-black/40"
                       style={{
                         backgroundImage: `url(${background})`,
                         backgroundSize: 'cover',
@@ -154,14 +156,14 @@ export default function MonsterModal({
                     >
                       <button
                         onClick={handlePrev}
-                        className={`absolute left-4 z-[1100] p-3 text-[#c9a227] hover:scale-125 transition-all active:scale-90 ${currentIndex === 0 ? "opacity-0 pointer-events-none" : "opacity-100 cursor-pointer"}`}
+                        className={`absolute left-4 z-1100 p-3 text-[#c9a227] hover:scale-125 transition-all active:scale-90 ${currentIndex === 0 ? "opacity-0 pointer-events-none" : "opacity-100 cursor-pointer"}`}
                       >
                         <ArrowLeft />
                       </button>
 
                       <button
                         onClick={handleNext}
-                        className={`absolute right-4 z-[1100] p-3 text-[#c9a227] hover:scale-125 transition-all active:scale-90 ${currentIndex === monsters.length - 1 ? "opacity-0 pointer-events-none" : "opacity-100 cursor-pointer"}`}
+                        className={`absolute right-4 z-1100 p-3 text-[#c9a227] hover:scale-125 transition-all active:scale-90 ${currentIndex === monsters.length - 1 ? "opacity-0 pointer-events-none" : "opacity-100 cursor-pointer"}`}
                       >
                         <ArrowRight />
                       </button>
@@ -200,7 +202,7 @@ export default function MonsterModal({
                           exit="exit"
                           className="flex flex-col items-center w-full"
                         >
-                          <p className="text-gray-400 text-center text-sm sm:text-base italic mb-8 min-h-[50px] max-w-md">
+                          <p className="text-gray-400 text-center text-sm sm:text-base italic mb-8 min-h-12.5 max-w-md">
                             "{currentMonster.description}"
                           </p>
 
