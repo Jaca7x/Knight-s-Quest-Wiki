@@ -120,13 +120,18 @@ export default function StackCards() {
                                 setDirection(index > currentIndex ? 1 : -1);
                                 setCurrentIndex(index);
                             }}
-                            className={`h-2.5 w-2.5 rotate-45 transition-all duration-500 border-2 outline-none focus:outline-none ${currentIndex === index ? 'scale-125' : 'opacity-30'
+                            style={{ "--tech-color": currentTech.color, } as React.CSSProperties}
+
+                            className={`
+                            h-3 w-3 rotate-45 transition-all duration-500 border-2 outline-none 
+                            border-(--tech-color)   
+                            focus-visible:ring-2 focus-visible:ring-[#FACC15] focus-visible:border-[#FACC15] focus-visible:ring-offset-8 focus-visible:ring-offset-[#FACC15]
+                            hover:opacity-100 hover:border-slate-500
+
+                            ${currentIndex === index
+                                    ? 'scale-125 bg-(--tech-color) shadow-[0_0_15px_var(--tech-color)]'
+                                    : 'opacity-80 bg-white/5 shadow-none'
                                 }`}
-                            style={{
-                                borderColor: currentTech.color,
-                                backgroundColor: currentIndex === index ? currentTech.color : 'transparent',
-                                boxShadow: currentIndex === index ? `0 0 15px ${currentTech.color}` : 'none'
-                            }}
                         />
                     ))}
                 </div>

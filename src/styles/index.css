@@ -66,3 +66,9 @@ div:focus {
   scrollbar-width: thin;
   scrollbar-color: #3b354f transparent;
 }
+
+:focus-visible {
+  outline: 2px solid #facc15;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
