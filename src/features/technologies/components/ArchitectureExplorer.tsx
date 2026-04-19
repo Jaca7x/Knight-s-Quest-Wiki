@@ -29,7 +29,8 @@ export default function ArchitectureExplorer() {
                                 <button
                                     type="button"
                                     className={`
-                                        flex gap-x-3 w-full items-center cursor-pointer px-6 py-2.5 text-sm transition-all duration-300 border-l-2
+                                        flex gap-x-3 w-full items-center cursor-pointer px-6 py-2.5 text-sm transition-all duration-300 border-l-2 focus-visible:ring-2 focus-visible:ring-[#FACC15] focus-visible:border-[#FACC15]/5 focus-visible:ring-offset-8 focus-visible:ring-offset-[#FACC15] 
+                                        focus:bg-[#FACC10]/5
                                         ${activeFolder.id === folder.id
                                             ? "bg-[#FACC15]/10 text-[#FACC15] border-[#FACC15]"
                                             : "text-gray-400 border-transparent hover:bg-white/5 hover:text-white"
@@ -39,7 +40,7 @@ export default function ArchitectureExplorer() {
                                         setShowEditor(true);
                                     }}
                                 >
-                                    <span className={`text-[10px] transition-transform ${activeFolder.id === folder.id ? "rotate-90 text-[#FACC15]" : "opacity-30"}`}>
+                                    <span className={`text-[10px] transition-transform ${activeFolder.id === folder.id ? "rotate-90 text-[#FACC15]" : "opacity-30 "}`}>
                                         ❯
                                     </span>
                                     <img
