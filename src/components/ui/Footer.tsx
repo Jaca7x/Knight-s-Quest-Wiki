@@ -5,7 +5,6 @@ export default function Footer() {
 
     const footerLinks = [
         { name: 'Contato', path: '/contact' },
-        { name: 'Privacidade', path: '/privacy' },
         { name: 'Social', path: '/social' }
     ];
 
